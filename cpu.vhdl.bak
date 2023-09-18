@@ -1,0 +1,435 @@
+-- xx_yy_pipe and xx_yy are same and are the pipeline registers
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity cpu is
+	generic(operand_width : integer := 16);
+	port(reset: in std_logic; clk: out std_logic;
+		  Register_0, Register_1, Register_2, Register_3, Register_4, 
+		  Register_5, Register_6, Register_7: out std_logic_vector(15 downto 0);
+		  ex_ma_pipe: out std_logic_vector(2*operand_width-1+5 downto 0);
+		  rr_ex_pipe: out std_logic_vector(4*operand_width-1+11 downto 0);
+		  id_rr_pipe: out std_logic_vector(2*operand_width-1+11 downto 0);
+		  if_id_pipe: out std_logic_vector(2*operand_width-1 downto 0);
+		  test: out std_logic_vector(100 downto 0));
+end entity cpu;
+
+architecture bhv of cpu is 
+--Memory
+component memory is
+	port (Mem_Addr, Mem_Data: in std_logic_vector(operand_width-1 downto 0);
+			clk, rst, r_enable, w_enable: in std_logic;
+			Mem_Out: out std_logic_vector(operand_width-1 downto 0));
+end component memory;
+
+
+--Register file
+component reg_file is
+	port (RF_A0, RF_A1, RF_A2, RF_A3, RF_A4: in std_logic_vector(2 downto 0);
+			RF_D3, RF_D4: in std_logic_vector(15 downto 0);
+			clk, rst, we: in std_logic;
+			RF_D0, RF_D1, RF_D2: out std_logic_vector(15 downto 0);
+			R0, R1, R2, R3, R4, R5, R6, R7: out std_logic_vector(15 downto 0));
+end component reg_file;
+
+--Register
+component reg is
+	port (D: in std_logic_vector(operand_width-1 downto 0);
+			clk, rst, we: in std_logic;
+			Q: out std_logic_vector(operand_width-1 downto 0));
+end component reg;
+
+--DeMux
+component demux18 is
+	port (inp: in std_logic_vector(operand_width-1 downto 0);
+			A: in std_logic_vector(2 downto 0);
+			outp1: out std_logic_vector(operand_width-1 downto 0);
+			outp2: out std_logic_vector(operand_width-1 downto 0);
+			outp3: out std_logic_vector(operand_width-1 downto 0);
+			outp4: out std_logic_vector(operand_width-1 downto 0);
+			outp5: out std_logic_vector(operand_width-1 downto 0);
+			outp6: out std_logic_vector(operand_width-1 downto 0);
+			outp7: out std_logic_vector(operand_width-1 downto 0);
+			outp8: out std_logic_vector(operand_width-1 downto 0));
+end component demux18;
+
+--ALU
+--00:ADD
+--01:SUBTRACT
+--10:NAND
+--11:SHIFTER_LEFT_7
+component ALU is
+	generic(operand_width : integer:=16);
+	port(ALU_op: in std_logic_vector(5 downto 0);
+	  ALU_A: in std_logic_vector(operand_width-1 downto 0);
+	  ALU_B: in std_logic_vector(operand_width-1 downto 0);
+	  carry_in: in std_logic;
+	  ALU_C: out std_logic_vector(operand_width-1 downto 0);
+	  ALU_zero: out std_logic;
+	  ALU_carry: out std_logic);
+end component ALU;
+
+component ADDER_1 is
+	generic(operand_width : integer:=16);
+	port(ADDER_A: in std_logic_vector(15 downto 0);
+	  ADDER_B: in std_logic_vector(15 downto 0);
+	  ADDER_C: out std_logic_vector(15 downto 0));
+end component ADDER_1;
+
+component Sign_Extension_10 is
+	port(ip: in std_logic_vector(operand_width-11 downto 0);
+			 op: out std_logic_vector(operand_width-1 downto 0));
+ end component;
+
+component Sign_Extension_7 is
+	port(ip: in std_logic_vector(operand_width-8 downto 0);
+			 op: out std_logic_vector(operand_width-1 downto 0));
+end component;
+
+component Left_shift_1 is
+   port(ip: in std_logic_vector(15 downto 0);
+			op: out std_logic_vector(15 downto 0));
+end component;
+
+
+---------------Define state type here-----------------------------
+type state is (rst, active);
+---------------Define signals of state type-----------------------
+signal y_present: state := rst;
+
+--state transition control signal
+signal stcon: std_logic_vector(3 downto 0); 
+signal read_0, read_1, read_2, write_1, write_2: std_logic_vector(2 downto 0);
+
+--sign extender
+signal SE10_inp1, SE10_inp2: std_logic_vector(operand_width-11 downto 0);
+signal SE7_inp: std_logic_vector(operand_width-8 downto 0);
+signal clock: std_logic := '1';
+signal stall: std_logic := '0';
+signal mem: std_logic_vector(4 downto 0);
+signal reg_reset, reg_we, mem_re, d_mem_re, mem_reset, d_mem_reset, mem_we, d_mem_we, t1_reset, t1_we,t2_reset, t2_we,t3_reset, t3_we, alu_zflag, alu_cflag, z_flag, c_flag,carry_in, change_if_rising, change_if_falling: std_logic := '0';
+signal mem_inp, d_mem_inp, mem_read, d_mem_read, mem_store, d_mem_store, outp_0, outp_1, outp_2, inp_1, inp_2, t1_inp, t1_outp,t2_inp, t2_outp,t3_inp, t3_outp, alu_inp1, alu_inp2, alu_outp1, SE10_outp1, SE10_outp2, SE7_outp, add_a, add_b, add_c, add_a2, add_b2, add_c2, instr, ls_i, ls_o: std_logic_vector(operand_width-1 downto 0):="0000000000000000";
+signal alu_op: std_logic_vector(5 downto 0);
+signal if_id_temp, if_id: std_logic_vector(2*operand_width-1 downto 0);
+signal id_rr, id_rr_temp: std_logic_vector(2*operand_width-1+11 downto 0);
+--id_rr, id_rr_temp first six bits are control bits
+signal rr_ex, rr_ex_temp: std_logic_vector(4*operand_width-1+11 downto 0);
+signal ex_ma, ex_ma_temp: std_logic_vector(2*operand_width-1+5 downto 0);
+signal ma_wb, ma_wb_temp: std_logic_vector(3*operand_width+4 downto 0);
+type instructions is array(0 to 5) of std_logic_vector(15 downto 0);
+
+begin
+
+RF1: reg_file port map (RF_A0=>read_0, RF_A1=>read_1, RF_A2=>read_2, RF_A3=>write_1, RF_A4=>write_2, RF_D3=>inp_1, RF_D4=>inp_2, clk=>clock, rst=>reg_reset, we=>reg_we, RF_D0=>outp_0, RF_D1=>outp_1, RF_D2=>outp_2, 
+								R0 => Register_0, R1 => Register_1, R2 => Register_2, 
+								R3 => Register_3, R4 => Register_4, R5 => Register_5, 
+								R6 => Register_6, R7 => Register_7);
+		
+--Instruction Memory
+Mem1: memory port map (Mem_Addr=>mem_inp, Mem_Data=>mem_store,clk=> clock, rst=>mem_reset, r_enable=>mem_re, w_enable=>mem_we, Mem_Out=> mem_read);
+--Data Memory
+Data_Mem : memory port map(Mem_Addr=>d_mem_inp, Mem_Data=>d_mem_store,clk=> clock, rst=>d_mem_reset, r_enable=>d_mem_re, w_enable=>d_mem_we, Mem_Out=> d_mem_read);
+ADDER1: ADDER_1 port map (ADDER_A=>add_a, ADDER_B=> add_b, ADDER_C=> add_c);
+ADDER2: ADDER_1 port map (ADDER_A=>add_a2, ADDER_B=> add_b2, ADDER_C=> add_c2);
+
+T1: reg port map (D=>t1_inp,
+			clk=> clock, rst=>t1_reset, we=>t1_we,
+			Q=>t1_outp);
+T2: reg port map (D=>t2_inp,
+			clk=> clock, rst=>t2_reset, we=>t2_we,
+			Q=>t2_outp);
+T3: reg port map (D=>t3_inp,
+			clk=> clock, rst=>t3_reset, we=>t3_we,
+			Q=>t3_outp);
+SE10_1: Sign_Extension_10 port map (ip => SE10_inp1, op => SE10_outp1);
+SE10_2: Sign_Extension_10 port map (ip => SE10_inp2, op => SE10_outp2);
+SE7: Sign_Extension_7 port map (ip => SE7_inp, op => SE7_outp);
+Left_shifter: Left_shift_1 port map (ip => ls_i, op => ls_o);
+alu1: ALU port map (ALU_op=>alu_op,
+	  ALU_A=>alu_inp1,
+	  ALU_B=>alu_inp2,
+	  carry_in=>carry_in,
+	  ALU_C=>alu_outp1,
+	  ALU_zero=>alu_zflag,
+	  ALU_carry=>alu_cflag);
+
+clk <= clock;
+clock <= not clock after 10ns;
+reg_reset <= reset;
+mem_reset <= reset;
+d_mem_reset<= reset;
+test(100 downto 85) <= outp_1;
+test(84 downto 69) <= outp_2;
+test(68 downto 66) <= read_1;
+test(65 downto 63) <= read_2;
+
+clock_proc: process(clock)
+begin
+	if(clock' event and clock = '1') then
+		change_if_rising <= not change_if_rising;
+	elsif(clock' event and clock = '0') then
+		change_if_falling <= not change_if_falling;
+	end if;
+end process clock_proc;
+
+fetch: process(change_if_rising, outp_0, add_c, add_c2, stall)
+begin
+	--1st: outp_0 -> u, add_c -> u
+	--2nd: outp_0 -> r0, add_c -> u
+	--3rd: outp_0 -> r0, add_c -> r0 + 1
+	read_0 <= "000";
+	mem_inp <= outp_0;
+	mem_re <= '1';
+	mem_we <= '0';
+	if_id_temp(2*operand_width-1 downto operand_width) <= mem_read;
+	if_id_temp(operand_width-1 downto 0) <= outp_0;
+	
+	add_a <= outp_0;
+	add_b <= "0000000000000001";
+	--Add mux condition here after other folks decide what to do in stalling
+	
+	write_1 <= "000";
+	if(stall = '1') then
+		inp_1 <= add_c2;
+	else
+		inp_1 <= add_c; -- pc is inp_1
+	end if;
+	reg_we <= '1';
+end process fetch;
+
+if_id_update: process(change_if_falling)
+begin
+	if(stall = '1') then
+		if_id(2*operand_width-1 downto 2*operand_width-4) <= "1110";
+		if_id_pipe(2*operand_width-1 downto 2*operand_width-4) <= "1110";
+	else
+		if_id <= if_id_temp; --if_id_temp is 32 bit
+		if_id_pipe <= if_id_temp;
+	end if;
+	-- if_id = instr+pc		(2*operand_width)
+end process if_id_update;
+
+instruction_decode: process(change_if_rising)
+begin 
+	id_rr_temp(2*operand_width-1 downto 0) <= if_id(2*operand_width-1 downto 0);
+	if (if_id(2*operand_width-1 downto 2*operand_width-4) = "0001")  then
+		id_rr_temp(2*operand_width-1+11 downto 2*operand_width-1+7) <= "00000";
+		if (if_id(operand_width+2 downto operand_width) = "000") then
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="000000"; -- +6 
+		elsif (if_id(operand_width+2 downto operand_width) = "010") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="010000";
+		elsif (if_id(operand_width+2 downto operand_width) = "001") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="001000";
+		elsif (if_id(operand_width+2 downto operand_width) = "011") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="000100";
+		elsif (if_id(operand_width+2 downto operand_width) = "100") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="000001";
+		elsif (if_id(operand_width+2 downto operand_width) = "110") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="010001";
+		elsif (if_id(operand_width+2 downto operand_width) = "101") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="001001";
+		elsif (if_id(operand_width+2 downto operand_width) = "111") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="000101";	
+		end if;
+	elsif ( if_id(2*operand_width-1 downto 2*operand_width-4) = "0010" ) then
+		id_rr_temp(2*operand_width-1+11 downto 2*operand_width-1+7) <= "00000";
+		if (if_id(operand_width+2 downto operand_width) = "000") then
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="100000"; -- +6 
+		elsif (if_id(operand_width+2 downto operand_width) = "010") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="110000";
+		elsif (if_id(operand_width+2 downto operand_width) = "001") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="101000";
+		elsif (if_id(operand_width+2 downto operand_width) = "100") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="100001";
+		elsif (if_id(operand_width+2 downto operand_width) = "110") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="110001";
+		elsif (if_id(operand_width+2 downto operand_width) = "101") then 
+			id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="101001";
+		end if;
+	elsif (if_id(2*operand_width-1 downto 2*operand_width-4) = "0000") then
+		id_rr_temp(2*operand_width-1+11 downto 2*operand_width-1+7) <= "00100";
+		id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="000000";
+	
+	elsif (if_id(2*operand_width-1 downto 2*operand_width-4) = "0011") then	
+		id_rr_temp(2*operand_width-1+11 downto 2*operand_width-1+7) <= "10100"; 
+		id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="000000"; 
+		
+	elsif (if_id(2*operand_width-1 downto 2*operand_width-4) = "0100") then	
+		id_rr_temp(2*operand_width-1+11 downto 2*operand_width-1+7) <= "00100";
+		id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <="000000";
+	elsif (if_id(2*operand_width-1 downto 2*operand_width-3) = "110") then
+		id_rr_temp(2*operand_width-1+6 downto 2*operand_width) <= "000000";
+		-- CONTROL SIGNALS FOR MEMERY_ACCESS NOT YET ASSIGNED
+	end if;
+end process	instruction_decode;-- id_rr =  alu_control bits+instr + pc 		(6+2*operand_width)end process instruction_decode;
+
+id_rr_update: process(change_if_falling)
+begin
+	if(stall = '1') then
+		id_rr(2*operand_width-1 downto 2*operand_width-4) <= "1110";
+		id_rr_pipe(2*operand_width-1 downto 2*operand_width-4) <= "1110";
+	else
+		id_rr <= id_rr_temp;
+		id_rr_pipe <= id_rr_temp;
+	end if;
+end process id_rr_update;
+
+--rr_ex=11 control bits+ valu of r_a + value of r_b + instr+ pc
+register_read: process(change_if_rising, outp_1, outp_2, alu_outp1, SE10_outp1)
+begin
+	rr_ex_temp(4*operand_width-1+11 downto 4*operand_width) <= id_rr(2*operand_width-1+11 downto 2*operand_width); -- control bits(6)
+	if (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0001") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0010") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "1000") then 
+		read_1 <= id_rr(2*operand_width-5 downto 2*operand_width-7); --reads value of Ra
+		read_2 <= id_rr(2*operand_width-8 downto 2*operand_width-10);--reads value of Rb
+		
+--		rr_ex_temp(4*operand_width-1 downto 3*operand_width) <= outp_1; --stores value of Ra
+--		rr_ex_temp(3*operand_width-1 downto 2*operand_width) <= outp_2; --stores value of Rb
+		rr_ex_temp(2*operand_width-1 downto 0) <= id_rr(2*operand_width-1 downto 0);
+	elsif (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0000") then
+		read_1 <= id_rr(2*operand_width-5 downto 2*operand_width-7); --reads value of Ra
+		SE10_inp1 <= id_rr(2*operand_width-11 downto operand_width);
+		rr_ex_temp(3*operand_width-1 downto 2*operand_width) <= SE10_outp1; --stores value of Imm
+--		rr_ex_temp(4*operand_width-1 downto 3*operand_width) <= outp_1; --stores value of Ra
+		rr_ex_temp(3*operand_width-1 downto 2*operand_width) <= SE10_outp1; --stores value of Imm
+		rr_ex_temp(2*operand_width-1 downto 0) <= id_rr(2*operand_width-1 downto 0);
+	end if;
+	
+	if (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0001") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0010") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "1000") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0000") or (id_rr(2*operand_width-1 downto 2*operand_width-3) = "110") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "1111") then
+		if(read_1 = rr_ex(operand_width+5 downto operand_width+3)) then
+			rr_ex_temp(4*operand_width-1 downto 3*operand_width) <= alu_outp1;
+		elsif(read_1 = ex_ma(5 downto 3)) then
+			rr_ex_temp(4*operand_width-1 downto 3*operand_width) <= ex_ma(2*operand_width-1 downto operand_width);
+		elsif(read_1 = ma_wb(5 downto 3)) then
+			rr_ex_temp(4*operand_width-1 downto 3*operand_width) <= ma_wb(2*operand_width-1 downto operand_width);
+		else
+			rr_ex_temp(4*operand_width-1 downto 3*operand_width) <= outp_1; --stores value of Ra
+		end if;
+	end if;
+	
+	if (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0001") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "0010") or (id_rr(2*operand_width-1 downto 2*operand_width-4) = "1000") or ((id_rr(2*operand_width-1 downto 2*operand_width-4) = "1101")) then
+		if(read_2 = rr_ex(operand_width+5 downto operand_width+3)) then
+			rr_ex_temp(3*operand_width-1 downto 2*operand_width) <= alu_outp1;
+		elsif(read_2 = ex_ma(5 downto 3)) then
+			rr_ex_temp(3*operand_width-1 downto 2*operand_width) <= ex_ma(2*operand_width-1 downto operand_width);
+		elsif(read_2 = ma_wb(5 downto 3)) then
+			rr_ex_temp(3*operand_width-1 downto 2*operand_width) <= ma_wb(2*operand_width-1 downto operand_width);
+		else
+			rr_ex_temp(3*operand_width-1 downto 2*operand_width) <= outp_2; --stores value of Rb
+		end if;
+	end if;
+		
+end process register_read;
+
+rr_ex_update: process(change_if_falling)
+begin
+	if(stall = '1') then
+		rr_ex(2*operand_width-1 downto 2*operand_width-4) <= "1110";
+		rr_ex_pipe(2*operand_width-1 downto 2*operand_width-4) <= "1110";
+	else
+		rr_ex <= rr_ex_temp; --if_id_temp is 32 bit
+		rr_ex_pipe <= rr_ex_temp;
+	end if;
+end process rr_ex_update;
+	
+execute: process(change_if_rising, alu_outp1, SE10_outp2, ls_o)
+begin
+	if (rr_ex(2*operand_width-1 downto 2*operand_width-1-3)="0001") or (rr_ex(2*operand_width-1 downto 2*operand_width-4) = "0010") then 
+		alu_op <= rr_ex(4*operand_width-1+6 downto 4*operand_width); --assigning ALU_op as 1st 6 control bits
+		alu_inp1 <= rr_ex(4*operand_width-1 downto 4*operand_width-1-15); --Value of Ra
+		alu_inp2 <= rr_ex(3*operand_width-1 downto 2*operand_width); --Value of Rb
+		
+	elsif (rr_ex(2*operand_width-1 downto 2*operand_width-4) = "0000") then
+		alu_op <= rr_ex(4*operand_width-1+6 downto 4*operand_width); --assigning ALU_op as 1st 6 control bits
+		alu_inp1 <= rr_ex(4*operand_width-1 downto 4*operand_width-1-15); --Value of Ra
+		alu_inp2 <= rr_ex(3*operand_width-1 downto 2*operand_width); --Value of Imm
+	
+	elsif ((rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1000" and rr_ex(4*operand_width-1 downto 3*operand_width) = rr_ex(3*operand_width-1 downto 2*operand_width)) or
+		   (rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1001" and rr_ex(4*operand_width-1 downto 3*operand_width) < rr_ex(3*operand_width-1 downto 2*operand_width)) or
+		   (rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1010" and rr_ex(4*operand_width-1 downto 3*operand_width) <= rr_ex(3*operand_width-1 downto 2*operand_width)) or
+		    rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1100" or rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1111") then
+		
+		if(rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1100" or rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1111") then
+			SE7_inp <= rr_ex(operand_width+8 downto operand_width);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+			ls_i <= SE7_outp;
+		else
+			SE10_inp2 <= rr_ex(operand_width+5 downto operand_width);
+			ls_i <= SE10_outp2;
+		end if;
+		
+		if(rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1111") then
+			add_a2 <= rr_ex(4*operand_width-1 downto 3*operand_width);	-- value of Ra
+		elsif(rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1101") then
+			add_a2 <= rr_ex(3*operand_width-1 downto 2*operand_width);	-- value of Rb
+		else
+			add_a2 <= rr_ex(operand_width-1 downto 0);	-- value of PC
+		end if;
+		
+		if(rr_ex(2*operand_width-1 downto 2*operand_width-1-3) = "1101") then
+			add_b2 <= "0000000000000000";
+		else
+			add_b2 <= ls_o;
+		end if;
+		
+		stall <= '1';
+	
+	end if;
+
+	if(rr_ex(2*operand_width-1 downto 2*operand_width-1-2) = "110") then
+		alu_op <= rr_ex(4*operand_width-1+6 downto 4*operand_width); --assigning ALU_op as 1st 6 control bits
+		alu_inp1 <= rr_ex(operand_width-1 downto 0); --Value of PC
+		alu_inp2 <= "0000000000000010";
+	end if;	
+	
+	if(not((rr_ex(2*operand_width-1 downto 2*operand_width-1-3)="1000") and (rr_ex(4*operand_width-1 downto 3*operand_width)=rr_ex(3*operand_width-1 downto 2*operand_width)))) then
+		stall <= '0';
+	end if;
+
+	--ex_ma = control bits(only 5 here) + output of ALU + instr 	(4+2*operand_width)
+	ex_ma_temp(2*operand_width+4 downto 2*operand_width) <= rr_ex(4*operand_width-1+11 downto 4*operand_width+6);
+	ex_ma_temp(2*operand_width-1 downto operand_width) <= alu_outp1;
+	ex_ma_temp(operand_width-1 downto 0) <= rr_ex(2*operand_width-1 downto operand_width);
+end process execute;
+
+ex_ma_update: process(change_if_falling)
+begin
+	ex_ma <= ex_ma_temp;
+	ex_ma_pipe <= ex_ma_temp;
+end process ex_ma_update;
+
+--This stage deals with DATA memory
+mem_access: process(change_if_rising,d_mem_read)
+begin
+	if(ex_ma(15 downto 12)="0100") then
+		d_mem_inp <= ex_ma(31 downto 16);
+		d_mem_store <= ex_ma(31 downto 16);-- can be anything
+--		d_mem_reset <= '0';
+		d_mem_re <= '1';
+		d_mem_we <= '0';
+		ma_wb_temp(47 downto 32) <= d_mem_read;
+		ma_wb_temp(31 downto 0) <= ex_ma(31 downto 0);
+	end if;
+		--ma_wb =  control bits(only 4 here)+ output of memory + output of ALU + instr 	(4+3*operand_width)
+end process mem_access;
+
+ma_wb_update: process(change_if_falling)
+begin
+	ma_wb <= ma_wb_temp;
+end process ma_wb_update;
+
+write_back: process(change_if_rising)
+begin
+	if (ma_wb(operand_width-1 downto operand_width-4)="0001") or (ma_wb(operand_width-1 downto operand_width-4)="0010") then
+		write_2 <= ma_wb(5 downto 3); -- Rc where me
+		inp_2 <= ma_wb(2*operand_width-1 downto operand_width);
+	elsif (ma_wb(operand_width-1 downto operand_width-4)="0000") then
+		write_2 <= ma_wb(8 downto 6);
+		inp_2 <= ma_wb(2*operand_width-1 downto operand_width); -- output has been stored in the register specified in the above line
+	elsif (ma_wb(operand_width-1 downto operand_width-4)="0011") or (ma_wb(operand_width-1 downto operand_width-4)="0100") or (ma_wb(operand_width-1 downto operand_width-3) = "110") then
+		write_2 <= ma_wb(11 downto 9);
+		inp_2 <= ma_wb(2*operand_width-1 downto operand_width);
+		--output to register
+	end if;
+
+end process write_back;
+end bhv;

@@ -1,0 +1,42 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity memory is
+	port (Mem_Addr, Mem_Data: in std_logic_vector(15 downto 0);
+			clk, rst, r_enable, w_enable: in std_logic;
+			Mem_Out: out std_logic_vector(15 downto 0));
+end entity memory;
+
+architecture behav of memory is
+
+type locations is array(0 to 31) of std_logic_vector(15 downto 0);
+-- Add instructions below
+
+signal Mem : locations := ("0001001001010000", "0001001010011000", "0001010011100000", "0001010011101000", "0001001001101000", "1000100101111111", "1000100110111111", others => (others => '1'));
+
+-- 0001 001 001 010 000 : R2 = R1 + R1
+-- 0001 001 010 011 000 : R3 = R1 + R2
+-- 0001 010 011 100 000 : R4 = R2 + R3
+-- 0001 010 011 101 000 : R5 = R2 + R3
+-- 0001 001 001 101 000 : R5 = R1 + R1
+
+-- 1000 100 101 111111 : if(R4 == R5)	PC -= 2
+-- 1000 100 110 111111 : if(R4 == R6)	PC -= 2
+
+begin
+	process (clk, rst, r_enable, Mem_Addr, Mem_Data)
+		begin
+			if (rst = '1') then
+				Mem(to_integer(unsigned(Mem_Addr(4 downto 0)))) <= "0000000000000000";
+			elsif (clk'event and clk = '1') then
+				if (w_enable = '1') then
+					Mem(to_integer(unsigned(Mem_Addr(4 downto 0)))) <= Mem_Data;
+				end if;
+			end if ;
+			
+			if (r_enable = '1') then
+					Mem_Out <= Mem(to_integer(unsigned(Mem_Addr(4 downto 0))));
+			end if;
+		end process;
+end behav;

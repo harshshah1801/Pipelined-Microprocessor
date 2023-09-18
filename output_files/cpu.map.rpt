@@ -1,0 +1,963 @@
+Analysis & Elaboration report for cpu
+Sat May 06 21:28:33 2023
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Parameter Settings for User Entity Instance: Top-level Entity: |cpu
+  5. Parameter Settings for User Entity Instance: ADDER_1:ADDER1
+  6. Parameter Settings for User Entity Instance: ADDER_1:ADDER2
+  7. Parameter Settings for User Entity Instance: ALU:alu1
+  8. Analysis & Elaboration Settings
+  9. Port Connectivity Checks: "ALU:alu1"
+ 10. Port Connectivity Checks: "ADDER_1:ADDER1"
+ 11. Port Connectivity Checks: "memory:Mem1"
+ 12. Port Connectivity Checks: "reg_file:RF1|demux18:DMX4"
+ 13. Port Connectivity Checks: "reg_file:RF1|demux18:DMX3"
+ 14. Port Connectivity Checks: "reg_file:RF1"
+ 15. Analysis & Elaboration Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                                   ;
++------------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status      ; Successful - Sat May 06 21:28:33 2023       ;
+; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                      ; cpu                                         ;
+; Top-level Entity Name              ; cpu                                         ;
+; Family                             ; MAX 10                                      ;
+; Total logic elements               ; N/A until Partition Merge                   ;
+;     Total combinational functions  ; N/A until Partition Merge                   ;
+;     Dedicated logic registers      ; N/A until Partition Merge                   ;
+; Total registers                    ; N/A until Partition Merge                   ;
+; Total pins                         ; N/A until Partition Merge                   ;
+; Total virtual pins                 ; N/A until Partition Merge                   ;
+; Total memory bits                  ; N/A until Partition Merge                   ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
+; Total PLLs                         ; N/A until Partition Merge                   ;
+; UFM blocks                         ; N/A until Partition Merge                   ;
+; ADC blocks                         ; N/A until Partition Merge                   ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |cpu ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; operand_width  ; 16    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADDER_1:ADDER1 ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; operand_width  ; 16    ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADDER_1:ADDER2 ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; operand_width  ; 16    ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ALU:alu1 ;
++----------------+-------+------------------------------+
+; Parameter Name ; Value ; Type                         ;
++----------------+-------+------------------------------+
+; operand_width  ; 16    ; Signed Integer               ;
++----------------+-------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Elaboration Settings                                                                            ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M25SAE144C8G     ;                    ;
+; Top-level entity name                                            ; cpu                ; cpu                ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu1"                                                                                ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; alu_op[1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; carry_in  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; alu_zero  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; alu_carry ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "ADDER_1:ADDER1"       ;
++----------------+-------+----------+--------------+
+; Port           ; Type  ; Severity ; Details      ;
++----------------+-------+----------+--------------+
+; adder_b[15..1] ; Input ; Info     ; Stuck at GND ;
+; adder_b[0]     ; Input ; Info     ; Stuck at VCC ;
++----------------+-------+----------+--------------+
+
+
++--------------------------------------------+
+; Port Connectivity Checks: "memory:Mem1"    ;
++----------+-------+----------+--------------+
+; Port     ; Type  ; Severity ; Details      ;
++----------+-------+----------+--------------+
+; mem_data ; Input ; Info     ; Stuck at GND ;
+; r_enable ; Input ; Info     ; Stuck at VCC ;
+; w_enable ; Input ; Info     ; Stuck at GND ;
++----------+-------+----------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg_file:RF1|demux18:DMX4"                                                           ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; outp1 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg_file:RF1|demux18:DMX3"                                                           ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; outp2 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; outp3 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; outp4 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; outp5 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; outp6 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; outp7 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; outp8 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "reg_file:RF1" ;
++-------+-------+----------+---------------+
+; Port  ; Type  ; Severity ; Details       ;
++-------+-------+----------+---------------+
+; rf_a0 ; Input ; Info     ; Stuck at GND  ;
+; rf_a3 ; Input ; Info     ; Stuck at GND  ;
+; we    ; Input ; Info     ; Stuck at VCC  ;
++-------+-------+----------+---------------+
+
+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Elaboration
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Sat May 06 21:28:21 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off pipeline -c cpu --analysis_and_elaboration
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file sign_extension_10.vhdl
+    Info (12022): Found design unit 1: Sign_Extension_10-Struct File: C:/Users/Ayush/Downloads/piroject_1/piroject/Sign_Extension_10.vhdl Line: 12
+    Info (12023): Found entity 1: Sign_Extension_10 File: C:/Users/Ayush/Downloads/piroject_1/piroject/Sign_Extension_10.vhdl Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file sign_extension_7.vhdl
+    Info (12022): Found design unit 1: Sign_Extension_7-Struct File: C:/Users/Ayush/Downloads/piroject_1/piroject/Sign_Extension_7.vhdl Line: 12
+    Info (12023): Found entity 1: Sign_Extension_7 File: C:/Users/Ayush/Downloads/piroject_1/piroject/Sign_Extension_7.vhdl Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file reg.vhdl
+    Info (12022): Found design unit 1: reg-behav File: C:/Users/Ayush/Downloads/piroject_1/piroject/reg.vhdl Line: 10
+    Info (12023): Found entity 1: reg File: C:/Users/Ayush/Downloads/piroject_1/piroject/reg.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file reg_file.vhdl
+    Info (12022): Found design unit 1: reg_file-arch File: C:/Users/Ayush/Downloads/piroject_1/piroject/reg_file.vhdl Line: 12
+    Info (12023): Found entity 1: reg_file File: C:/Users/Ayush/Downloads/piroject_1/piroject/reg_file.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file mux81.vhdl
+    Info (12022): Found design unit 1: mux81-behav File: C:/Users/Ayush/Downloads/piroject_1/piroject/mux81.vhdl Line: 17
+    Info (12023): Found entity 1: mux81 File: C:/Users/Ayush/Downloads/piroject_1/piroject/mux81.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file memory.vhdl
+    Info (12022): Found design unit 1: memory-behav File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 11
+    Info (12023): Found entity 1: memory File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file left_shift1.vhdl
+    Info (12022): Found design unit 1: Left_shift_1-Struct File: C:/Users/Ayush/Downloads/piroject_1/piroject/Left_shift1.vhdl Line: 9
+    Info (12023): Found entity 1: Left_shift_1 File: C:/Users/Ayush/Downloads/piroject_1/piroject/Left_shift1.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file demux18.vhdl
+    Info (12022): Found design unit 1: demux18-behav File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 17
+    Info (12023): Found entity 1: demux18 File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file cpu.vhdl
+    Info (12022): Found design unit 1: cpu-bhv File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 13
+    Info (12023): Found entity 1: cpu File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file alu.vhdl
+    Info (12022): Found design unit 1: ALU-a1 File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 17
+    Info (12023): Found entity 1: ALU File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file add.vhdl
+    Info (12022): Found design unit 1: ADDER_1-a1 File: C:/Users/Ayush/Downloads/piroject_1/piroject/add.vhdl Line: 13
+    Info (12023): Found entity 1: ADDER_1 File: C:/Users/Ayush/Downloads/piroject_1/piroject/add.vhdl Line: 6
+Info (12127): Elaborating entity "cpu" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at cpu.vhdl(91): object "alu_zflag" assigned a value but never read File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 91
+Warning (10036): Verilog HDL or VHDL warning at cpu.vhdl(91): object "alu_cflag" assigned a value but never read File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 91
+Warning (10540): VHDL Signal Declaration warning at cpu.vhdl(91): used explicit default value for signal "carry_in" because signal was never assigned a value File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 91
+Warning (10540): VHDL Signal Declaration warning at cpu.vhdl(92): used explicit default value for signal "mem_store" because signal was never assigned a value File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 92
+Warning (10036): Verilog HDL or VHDL warning at cpu.vhdl(92): object "instr" assigned a value but never read File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 92
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(143): signal "mem_read" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 143
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(144): signal "mem_read" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 144
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(156): signal "pc_reassign" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 156
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(157): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 157
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(158): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 158
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(173): signal "stall" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 173
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(176): signal "if_id_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 176
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(171): inferring latch(es) for signal or variable "if_id", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(195): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 195
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(197): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 197
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(199): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 199
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(201): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 201
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(203): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 203
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(205): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 205
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(207): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 207
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(209): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 209
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(211): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 211
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(213): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 213
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(217): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 217
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(219): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 219
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(221): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 221
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(223): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 223
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(225): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 225
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(227): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 227
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(229): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 229
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(233): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 233
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(237): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 237
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(241): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 241
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(248): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 248
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(254): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 254
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(259): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 259
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(263): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 263
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(268): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 268
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(273): signal "if_id" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 273
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(193): inferring latch(es) for signal or variable "id_rr_temp", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(285): signal "stall" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 285
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(288): signal "id_rr_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 288
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(293): signal "id_rr_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 293
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(294): signal "repeat" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 294
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(294): signal "rr_ex_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 294
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(298): signal "id_rr_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 298
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(304): signal "repeat" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 304
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(304): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 304
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(308): signal "remove" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 308
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(312): signal "ex_ma_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 312
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(312): signal "start" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 312
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(283): inferring latch(es) for signal or variable "id_rr", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(283): inferring latch(es) for signal or variable "start", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(283): inferring latch(es) for signal or variable "remove", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(283): inferring latch(es) for signal or variable "repeat", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(283): inferring latch(es) for signal or variable "pc_reassign", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(324): signal "id_rr" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 324
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(325): signal "id_rr" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 325
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(326): signal "id_rr" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 326
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(327): signal "id_rr" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 327
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(336): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 336
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(336): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 336
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(337): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 337
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(337): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 337
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(338): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 338
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(338): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 338
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(342): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 342
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(342): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 342
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(343): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 343
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(343): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 343
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(344): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 344
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(344): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 344
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(346): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 346
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(348): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 348
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(348): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 348
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(349): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 349
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(349): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 349
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(350): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 350
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(350): signal "read_1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 350
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(352): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 352
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(361): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 361
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(361): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 361
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(362): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 362
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(362): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 362
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(363): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 363
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(363): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 363
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(367): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 367
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(367): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 367
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(368): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 368
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(368): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 368
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(369): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 369
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(369): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 369
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(371): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 371
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(373): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 373
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(373): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 373
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(374): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 374
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(374): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 374
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(375): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 375
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(375): signal "read_2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 375
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(377): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 377
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(392): signal "stall" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 392
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(395): signal "rr_ex_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 395
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(390): inferring latch(es) for signal or variable "rr_ex", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(406): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 406
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(407): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 407
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(408): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 408
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(410): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 410
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(411): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 411
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(412): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 412
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(414): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 414
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(416): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 416
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(417): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 417
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(422): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 422
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(427): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 427
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(428): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 428
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(429): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 429
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(430): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 430
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(432): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 432
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(435): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 435
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(440): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 440
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(441): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 441
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(442): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 442
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(443): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 443
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(445): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 445
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(448): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 448
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(458): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 458
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(459): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 459
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(460): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 460
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(465): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 465
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(468): signal "start" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 468
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(470): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 470
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(472): signal "add_c2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 472
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(475): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 475
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(476): signal "temp_Q" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 476
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(481): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 481
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(482): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 482
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(483): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 483
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(484): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 484
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(488): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 488
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(489): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 489
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(492): signal "rr_ex" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 492
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(404): inferring latch(es) for signal or variable "ls_i", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(404): inferring latch(es) for signal or variable "add_a2", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(404): inferring latch(es) for signal or variable "add_b2", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(404): inferring latch(es) for signal or variable "stall", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(404): inferring latch(es) for signal or variable "lm_sm_reg_temp", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(404): inferring latch(es) for signal or variable "temp_D", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(500): signal "ex_ma_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 500
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(501): signal "temp_D" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 501
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(502): signal "lm_sm_reg_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 502
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(508): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 508
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(509): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 509
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(510): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 510
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(514): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 514
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(515): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 515
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(519): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 519
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(520): signal "lm_sm_reg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 520
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(522): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 522
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(524): signal "ex_ma" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 524
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(533): signal "ma_wb_temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 533
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(543): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 543
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(544): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 544
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(545): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 545
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(547): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 547
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(548): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 548
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(549): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 549
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(551): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 551
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(552): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 552
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(553): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 553
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(554): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 554
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(557): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 557
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(558): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 558
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(559): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 559
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(561): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 561
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(562): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 562
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(563): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 563
+Warning (10492): VHDL Process Statement warning at cpu.vhdl(564): signal "ma_wb" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 564
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(541): inferring latch(es) for signal or variable "write_2", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Warning (10631): VHDL Process Statement warning at cpu.vhdl(541): inferring latch(es) for signal or variable "inp_2", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[0]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[1]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[2]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[3]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[4]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[5]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[6]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[7]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[8]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[9]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[10]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[11]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[12]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[13]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[14]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "inp_2[15]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "write_2[0]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "write_2[1]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "write_2[2]" at cpu.vhdl(541) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 541
+Info (10041): Inferred latch for "temp_D[0]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[1]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[2]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[3]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[4]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[5]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[6]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[7]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[8]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[9]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[10]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[11]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[12]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[13]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[14]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "temp_D[15]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[0]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[1]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[2]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[3]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[4]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[5]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[6]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[7]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[8]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[9]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[10]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[11]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[12]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[13]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[14]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "lm_sm_reg_temp[15]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "stall" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[0]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[1]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[2]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[3]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[4]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[5]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[6]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[7]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[8]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[9]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[10]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[11]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[12]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[13]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[14]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_b2[15]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[0]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[1]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[2]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[3]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[4]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[5]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[6]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[7]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[8]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[9]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[10]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[11]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[12]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[13]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[14]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "add_a2[15]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[0]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[1]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[2]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[3]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[4]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[5]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[6]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[7]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[8]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[9]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[10]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[11]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[12]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[13]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[14]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "ls_i[15]" at cpu.vhdl(404) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 404
+Info (10041): Inferred latch for "rr_ex[0]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[1]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[2]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[3]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[4]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[5]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[6]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[7]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[8]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[9]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[10]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[11]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[12]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[13]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[14]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[15]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[16]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[17]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[18]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[19]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[20]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[21]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[22]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[23]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[24]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[25]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[26]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[27]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[32]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[33]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[34]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[35]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[36]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[37]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[38]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[39]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[40]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[41]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[42]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[43]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[44]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[45]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[46]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[47]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[48]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[49]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[50]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[51]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[52]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[53]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[54]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[55]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[56]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[57]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[58]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[59]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[60]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[61]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[62]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[63]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[64]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[65]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[66]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[67]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[68]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[69]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[70]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[71]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[72]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[73]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "rr_ex[74]" at cpu.vhdl(390) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 390
+Info (10041): Inferred latch for "pc_reassign[0]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[1]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[2]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[3]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[4]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[5]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[6]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[7]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[8]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[9]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[10]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[11]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[12]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[13]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[14]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "pc_reassign[15]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "repeat" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "remove" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "start" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[0]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[1]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[2]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[3]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[4]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[5]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[6]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[7]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[8]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[9]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[10]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[11]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[12]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[13]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[14]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[15]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[16]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[17]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[18]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[19]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[20]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[21]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[22]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[23]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[24]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[25]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[26]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[27]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[32]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[33]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[34]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[35]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[36]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[37]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[38]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[39]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[40]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[41]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr[42]" at cpu.vhdl(283) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 283
+Info (10041): Inferred latch for "id_rr_temp[32]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[33]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[34]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[35]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[36]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[37]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[38]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[39]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[40]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[41]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "id_rr_temp[42]" at cpu.vhdl(193) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 193
+Info (10041): Inferred latch for "if_id[0]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[1]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[2]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[3]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[4]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[5]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[6]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[7]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[8]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[9]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[10]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[11]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[12]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[13]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[14]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[15]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[16]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[17]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[18]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[19]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[20]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[21]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[22]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[23]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[24]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[25]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[26]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (10041): Inferred latch for "if_id[27]" at cpu.vhdl(171) File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 171
+Info (12128): Elaborating entity "reg_file" for hierarchy "reg_file:RF1" File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 103
+Info (12128): Elaborating entity "demux18" for hierarchy "reg_file:RF1|demux18:DMX3" File: C:/Users/Ayush/Downloads/piroject_1/piroject/reg_file.vhdl Line: 50
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp1", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp2", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp3", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp4", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp5", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp6", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp7", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Warning (10631): VHDL Process Statement warning at demux18.vhdl(19): inferring latch(es) for signal or variable "outp8", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp8[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp7[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp6[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp5[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp4[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp3[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp2[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[0]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[1]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[2]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[3]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[4]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[5]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[6]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[7]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[8]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[9]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[10]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[11]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[12]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[13]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[14]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (10041): Inferred latch for "outp1[15]" at demux18.vhdl(19) File: C:/Users/Ayush/Downloads/piroject_1/piroject/demux18.vhdl Line: 19
+Info (12128): Elaborating entity "reg" for hierarchy "reg_file:RF1|reg:\L1:0:R" File: C:/Users/Ayush/Downloads/piroject_1/piroject/reg_file.vhdl Line: 57
+Info (12128): Elaborating entity "mux81" for hierarchy "reg_file:RF1|mux81:MX0" File: C:/Users/Ayush/Downloads/piroject_1/piroject/reg_file.vhdl Line: 61
+Info (12128): Elaborating entity "memory" for hierarchy "memory:Mem1" File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 109
+Warning (10492): VHDL Process Statement warning at memory.vhdl(45): signal "Mem" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 45
+Warning (10631): VHDL Process Statement warning at memory.vhdl(34): inferring latch(es) for signal or variable "Mem_Out", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[0]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[1]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[2]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[3]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[4]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[5]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[6]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[7]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[8]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[9]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[10]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[11]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[12]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[13]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[14]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (10041): Inferred latch for "Mem_Out[15]" at memory.vhdl(34) File: C:/Users/Ayush/Downloads/piroject_1/piroject/memory.vhdl Line: 34
+Info (12128): Elaborating entity "ADDER_1" for hierarchy "ADDER_1:ADDER1" File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 112
+Info (12128): Elaborating entity "Sign_Extension_10" for hierarchy "Sign_Extension_10:SE10" File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 114
+Info (12128): Elaborating entity "Sign_Extension_7" for hierarchy "Sign_Extension_7:SE7" File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 115
+Info (12128): Elaborating entity "Left_shift_1" for hierarchy "Left_shift_1:Left_shifter" File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 116
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu1" File: C:/Users/Ayush/Downloads/piroject_1/piroject/cpu.vhdl Line: 117
+Warning (10492): VHDL Process Statement warning at alu.vhdl(139): signal "carry_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 139
+Warning (10492): VHDL Process Statement warning at alu.vhdl(153): signal "carry_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 153
+Warning (10631): VHDL Process Statement warning at alu.vhdl(127): inferring latch(es) for signal or variable "ALU_C", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Warning (10631): VHDL Process Statement warning at alu.vhdl(127): inferring latch(es) for signal or variable "ALU_carry", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Warning (10631): VHDL Process Statement warning at alu.vhdl(127): inferring latch(es) for signal or variable "ALU_zero", which holds its previous value in one or more paths through the process File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_zero" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_carry" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[0]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[1]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[2]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[3]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[4]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[5]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[6]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[7]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[8]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[9]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[10]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[11]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[12]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[13]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[14]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info (10041): Inferred latch for "ALU_C[15]" at alu.vhdl(127) File: C:/Users/Ayush/Downloads/piroject_1/piroject/alu.vhdl Line: 127
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 195 warnings
+    Info: Peak virtual memory: 4781 megabytes
+    Info: Processing ended: Sat May 06 21:28:33 2023
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:28
+
+
